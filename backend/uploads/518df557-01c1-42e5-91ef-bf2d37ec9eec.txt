@@ -1,0 +1,9 @@
+CENTRAL DIAGNOSTIC PATHOLOGY LABORATORY
+Patient: Saraswathi Meesa
+Fasting Blood Glucose: 126.0 mg/dL
+HbA1c (Glycated Hemoglobin): 6.3 %
+Total Cholesterol: 218.0 mg/dL
+LDL Cholesterol: 138.0 mg/dL
+Triglycerides: 172.0 mg/dL
+TSH (Thyroid Stimulating Hormone): 4.6 uIU/mL
+Vitamin D (25-OH): 18.2 ng/mL
