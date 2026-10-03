@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database with pgvector extension
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: mediscope-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-mediscope_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-MediscopeSecure2026!}
+      POSTGRES_DB: ${POSTGRES_DB:-mediscope}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-mediscope_admin} -d ${POSTGRES_DB:-mediscope}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Mediscope Full-Stack Application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mediscope-app
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-mediscope_admin}:${POSTGRES_PASSWORD:-MediscopeSecure2026!}@db:5432/${POSTGRES_DB:-mediscope}
+      - SECRET_KEY=${SECRET_KEY:-mediscope-super-secure-secret-key-2026-akhila-meesa}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - FROM_EMAIL=${FROM_EMAIL:-reminders@mediscope.health}
+    volumes:
+      - report_uploads:/app/backend/uploads
+
+volumes:
+  postgres_data:
+  report_uploads:

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/mediscope_mascot.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mediscope — AI Health Report Companion & Consultation Briefing</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              mediscope: {
+                primary: '#1E3A8A',       // Corporate Blue
+                primaryHover: '#172554',  // Darker Corporate Blue
+                accent: '#1E3A8A',        // Corporate Accent
+                accentHover: '#172554',   // Dark Corporate Accent
+                accentLight: '#EFF6FF',   // Soft Blue Highlight
+                secondary: '#475569',     // Corporate Slate
+                border: '#CBD5E1',        // Soft Container Stroke
+                canvas: '#F8FAFC',        // Base Corporate Page Canvas
+                surface: '#FFFFFF',       // Pure White Surface
+              }
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            },
+            boxShadow: {
+              'mediscope': '0 10px 25px -5px rgba(30, 58, 138, 0.08)',
+              'mediscope-lg': '0 20px 35px -10px rgba(30, 58, 138, 0.16)',
+              'mediscope-warm': '0 10px 25px -5px rgba(30, 58, 138, 0.15)',
+              'mediscope-glow': '0 0 25px rgba(30, 58, 138, 0.25)',
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-[#F8FAFC] text-[#1E3A8A] antialiased selection:bg-[#1E3A8A] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
